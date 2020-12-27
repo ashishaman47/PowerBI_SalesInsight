@@ -1,0 +1,21 @@
+SELECT distinct(currency) FROM transactions;
+'INR'
+'INR\r'
+
+SELECT count(*) from transactions where currency='INR\r';
+
+SELECT count(*) from transactions where currency='INR';
+
+SELECT * from transactions where currency='USD\r' or currency='USD';
+
+#Revenue in year 2020
+SELECT sum(sales.transactions.sales_amount) from sales.transactions inner join sales.date on sales.transactions.order_date = sales.date.date 
+where sales.date.year = 2020 and sales.transactions.currency = 'INR\r' or sales.transactions.currency = 'USD\r';
+
+#Revenue in year 2020 in Jan Month
+select sum(sales.transactions.sales_amount) from sales.transactions inner join sales.date on sales.transactions.order_date = sales.date.date 
+where sales.date.year = 2020 and sales.date.month_name='January' and sales.transactions.currency = 'INR\r' or sales.transactions.currency = 'USD\r';
+
+#Revenue in year 2020 in Chennai
+select sum(sales.transactions.sales_amount) from sales.transactions inner join sales.date on sales.transactions.order_date = sales.date.date 
+where sales.date.year = 2020 and sales.transactions.market_code='Mark001' and sales.transactions.currency = 'INR\r' or sales.transactions.currency = 'USD\r';
